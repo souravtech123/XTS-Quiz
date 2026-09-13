@@ -1,10 +1,10 @@
 {
   "config": {
     "title": "XTS Tech Arena — Season 1",
-    "subtitle": "Test your technical knowledge. Challenge yourself. Compete with the best.",
+    "subtitle": "make sure and thank you fort particpating result will announced soon",
     "totalQuestions": 10,
     "timeLimitMinutes": 10,
-    "status": "Live",
+    "status": "Closed",
     "requireStudentId": true,
     "requirePhone": true
   },
