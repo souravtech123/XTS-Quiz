@@ -7,7 +7,7 @@ import { ShieldCheck, Lock, Mail, ArrowRight, AlertCircle, Cpu } from 'lucide-re
 export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState('admin@xts.org');
-  const [password, setPassword] = useState('admin123');
+  const [password, setPassword] = useState('ankit_755@');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
