@@ -55,10 +55,6 @@ export default function AdminLoginPage() {
         {/* Login Form Card */}
         <div className="glass-card p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
           
-          <div className="p-3 rounded-xl bg-purple-950/60 border border-purple-800/60 text-purple-200 text-xs flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-purple-400 shrink-0" />
-            <span>Default Admin Credentials: <strong>admin@xts.org</strong> / <strong>admin123</strong></span>
-          </div>
 
           {error && (
             <div className="p-4 rounded-xl bg-red-950/80 border border-red-800/80 text-red-200 text-xs flex items-center gap-2">
