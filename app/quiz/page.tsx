@@ -491,6 +491,12 @@ function QuizContent() {
         {currentQuestion && (
           <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl mb-8 space-y-6">
             
+            {currentQuestion.story && (
+              <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-sm text-slate-300 leading-relaxed font-mono whitespace-pre-wrap">
+                {currentQuestion.story}
+              </div>
+            )}
+
             <h3 className="text-lg sm:text-xl font-extrabold text-white leading-relaxed">
               {currentQuestion.question}
             </h3>
@@ -505,19 +511,19 @@ function QuizContent() {
                   <button
                     key={optionKey}
                     onClick={() => handleOptionSelect(optionKey)}
-                    className={`w-full text-left p-4 rounded-2xl border text-sm font-medium transition-all flex items-center justify-between group ${
+                    className={`w-full text-left p-4 rounded-2xl border text-sm font-medium transition-all flex items-start justify-between gap-4 group ${
                       isSelected
                         ? 'bg-purple-950/80 border-purple-500 text-white ring-1 ring-purple-500/50 shadow-lg shadow-purple-950/50'
                         : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:bg-slate-800/80 hover:border-slate-700'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono font-bold text-xs ${
+                    <div className="flex items-start gap-3 flex-1">
+                      <span className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5 ${
                         isSelected ? 'bg-purple-500 text-white' : 'bg-slate-800 text-slate-400 group-hover:text-slate-200'
                       }`}>
                         {optionKey}
                       </span>
-                      <span>{optionText}</span>
+                      <span className="leading-relaxed whitespace-pre-wrap">{optionText}</span>
                     </div>
 
                     <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${

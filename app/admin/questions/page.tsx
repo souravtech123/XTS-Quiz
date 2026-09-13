@@ -12,13 +12,14 @@ export default function AdminQuestionsPage() {
   const [showModal, setShowModal] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState({
+    story: '',
     question: '',
     optionA: '',
     optionB: '',
     optionC: '',
     optionD: '',
     correctAnswer: 'A' as 'A' | 'B' | 'C' | 'D',
-    marks: 1
+    marks: 5
   });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -42,13 +43,14 @@ export default function AdminQuestionsPage() {
   const openAddModal = () => {
     setEditingId(null);
     setForm({
+      story: '',
       question: '',
       optionA: '',
       optionB: '',
       optionC: '',
       optionD: '',
       correctAnswer: 'A',
-      marks: 1
+      marks: 5
     });
     setError('');
     setShowModal(true);
@@ -57,13 +59,14 @@ export default function AdminQuestionsPage() {
   const openEditModal = (q: Question) => {
     setEditingId(q.id);
     setForm({
+      story: q.story || '',
       question: q.question,
       optionA: q.options.A,
       optionB: q.options.B,
       optionC: q.options.C,
       optionD: q.options.D,
       correctAnswer: q.correctAnswer,
-      marks: q.marks || 1
+      marks: q.marks || 5
     });
     setError('');
     setShowModal(true);
@@ -75,6 +78,7 @@ export default function AdminQuestionsPage() {
     setSubmitting(true);
 
     const payload = {
+      story: form.story,
       question: form.question,
       options: {
         A: form.optionA,
@@ -163,6 +167,11 @@ export default function AdminQuestionsPage() {
                     Q{idx + 1}
                   </span>
                   <div>
+                    {q.story && (
+                      <div className="mb-2 p-2 rounded-lg bg-slate-900/50 border border-slate-800 text-xs text-slate-400 font-mono italic">
+                        {q.story.substring(0, 100)}{q.story.length > 100 ? '...' : ''}
+                      </div>
+                    )}
                     <h3 className="font-bold text-white text-base">{q.question}</h3>
                     <span className="text-[11px] font-mono text-slate-500">Marks: {q.marks}</span>
                   </div>
@@ -193,14 +202,16 @@ export default function AdminQuestionsPage() {
                   return (
                     <div
                       key={key}
-                      className={`p-3 rounded-xl border flex items-center justify-between ${
+                      className={`p-3 rounded-xl border flex flex-col justify-between ${
                         isCorrect
                           ? 'bg-emerald-950/60 border-emerald-700/80 text-emerald-200'
                           : 'bg-slate-900/70 border-slate-800 text-slate-300'
                       }`}
                     >
-                      <span><strong>{key}:</strong> {q.options[key]}</span>
-                      {isCorrect && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />}
+                      <div className="flex justify-between items-start gap-2">
+                        <span className="break-words"><strong>{key}:</strong> {q.options[key]}</span>
+                        {isCorrect && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />}
+                      </div>
                     </div>
                   );
                 })}
@@ -214,7 +225,7 @@ export default function AdminQuestionsPage() {
       {/* Add / Edit Question Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="glass-card max-w-xl w-full p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl relative space-y-5 max-h-[90vh] overflow-y-auto">
+          <div className="glass-card max-w-2xl w-full p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl relative space-y-5 max-h-[90vh] overflow-y-auto">
             
             <button
               onClick={() => setShowModal(false)}
@@ -235,13 +246,24 @@ export default function AdminQuestionsPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
+                <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Case Study / Story (Optional)</label>
+                <textarea
+                  rows={4}
+                  value={form.story}
+                  onChange={e => setForm({ ...form, story: e.target.value })}
+                  placeholder="e.g. A long case study or scenario..."
+                  className="w-full p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
+                />
+              </div>
+
+              <div>
                 <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Question Statement</label>
                 <textarea
                   required
-                  rows={3}
+                  rows={2}
                   value={form.question}
                   onChange={e => setForm({ ...form, question: e.target.value })}
-                  placeholder="e.g. Which data structure operates on FIFO basis?"
+                  placeholder="e.g. Based on the case above, what is..."
                   className="w-full p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
                 />
               </div>
@@ -249,9 +271,9 @@ export default function AdminQuestionsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Option A</label>
-                  <input
-                    type="text"
+                  <textarea
                     required
+                    rows={2}
                     value={form.optionA}
                     onChange={e => setForm({ ...form, optionA: e.target.value })}
                     className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
@@ -259,9 +281,9 @@ export default function AdminQuestionsPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Option B</label>
-                  <input
-                    type="text"
+                  <textarea
                     required
+                    rows={2}
                     value={form.optionB}
                     onChange={e => setForm({ ...form, optionB: e.target.value })}
                     className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
@@ -269,9 +291,9 @@ export default function AdminQuestionsPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Option C</label>
-                  <input
-                    type="text"
+                  <textarea
                     required
+                    rows={2}
                     value={form.optionC}
                     onChange={e => setForm({ ...form, optionC: e.target.value })}
                     className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
@@ -279,9 +301,9 @@ export default function AdminQuestionsPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Option D</label>
-                  <input
-                    type="text"
+                  <textarea
                     required
+                    rows={2}
                     value={form.optionD}
                     onChange={e => setForm({ ...form, optionD: e.target.value })}
                     className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"

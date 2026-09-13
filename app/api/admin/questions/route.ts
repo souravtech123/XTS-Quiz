@@ -17,13 +17,14 @@ export async function POST(req: Request) {
   }
 
   const body = await req.json();
-  const { question, options, correctAnswer, marks } = body;
+  const { story, question, options, correctAnswer, marks } = body;
 
   if (!question || !options || !correctAnswer) {
     return NextResponse.json({ error: 'Question text, options, and correct answer required' }, { status: 400 });
   }
 
   const newQ = await db.addQuestion({
+    story,
     question,
     options,
     correctAnswer,
