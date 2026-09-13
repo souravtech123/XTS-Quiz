@@ -2,7 +2,8 @@ export type QuizStatus = 'Draft' | 'Published' | 'Live' | 'Closed';
 
 export interface Question {
   id: string;
-  story?: string;
+  title: string;
+  story: string;
   question: string;
   options: {
     A: string;
@@ -16,7 +17,8 @@ export interface Question {
 
 export interface ClientQuestion {
   id: string;
-  story?: string;
+  title: string;
+  story: string;
   question: string;
   options: {
     A: string;

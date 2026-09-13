@@ -491,13 +491,19 @@ function QuizContent() {
         {currentQuestion && (
           <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl mb-8 space-y-6">
             
+            {currentQuestion.title && (
+              <h2 className="text-xl sm:text-2xl font-black text-purple-400">
+                {currentQuestion.title}
+              </h2>
+            )}
+
             {currentQuestion.story && (
               <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-sm text-slate-300 leading-relaxed font-mono whitespace-pre-wrap">
                 {currentQuestion.story}
               </div>
             )}
 
-            <h3 className="text-lg sm:text-xl font-extrabold text-white leading-relaxed">
+            <h3 className="text-lg font-extrabold text-white leading-relaxed">
               {currentQuestion.question}
             </h3>
 

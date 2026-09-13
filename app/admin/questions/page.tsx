@@ -12,6 +12,7 @@ export default function AdminQuestionsPage() {
   const [showModal, setShowModal] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState({
+    title: '',
     story: '',
     question: '',
     optionA: '',
@@ -43,6 +44,7 @@ export default function AdminQuestionsPage() {
   const openAddModal = () => {
     setEditingId(null);
     setForm({
+      title: '',
       story: '',
       question: '',
       optionA: '',
@@ -59,6 +61,7 @@ export default function AdminQuestionsPage() {
   const openEditModal = (q: Question) => {
     setEditingId(q.id);
     setForm({
+      title: q.title || '',
       story: q.story || '',
       question: q.question,
       optionA: q.options.A,
@@ -78,6 +81,7 @@ export default function AdminQuestionsPage() {
     setSubmitting(true);
 
     const payload = {
+      title: form.title,
       story: form.story,
       question: form.question,
       options: {
@@ -167,12 +171,13 @@ export default function AdminQuestionsPage() {
                     Q{idx + 1}
                   </span>
                   <div>
+                    {q.title && <h3 className="font-bold text-white text-base mb-1">{q.title}</h3>}
                     {q.story && (
                       <div className="mb-2 p-2 rounded-lg bg-slate-900/50 border border-slate-800 text-xs text-slate-400 font-mono italic">
                         {q.story.substring(0, 100)}{q.story.length > 100 ? '...' : ''}
                       </div>
                     )}
-                    <h3 className="font-bold text-white text-base">{q.question}</h3>
+                    <h4 className="font-semibold text-slate-200 text-sm">{q.question}</h4>
                     <span className="text-[11px] font-mono text-slate-500">Marks: {q.marks}</span>
                   </div>
                 </div>
@@ -246,8 +251,21 @@ export default function AdminQuestionsPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Case Study / Story (Optional)</label>
+                <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Question Title</label>
+                <input
+                  type="text"
+                  required
+                  value={form.title}
+                  onChange={e => setForm({ ...form, title: e.target.value })}
+                  placeholder="e.g. Data Structures - Queues"
+                  className="w-full p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-300 uppercase mb-1">Case Study</label>
                 <textarea
+                  required
                   rows={4}
                   value={form.story}
                   onChange={e => setForm({ ...form, story: e.target.value })}

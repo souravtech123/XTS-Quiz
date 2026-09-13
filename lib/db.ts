@@ -18,7 +18,8 @@ function rowToConfig(r: Record<string, unknown>): QuizConfig {
 function rowToQuestion(r: Record<string, unknown>): Question {
   return {
     id: r.id as string,
-    story: r.story ? (r.story as string) : undefined,
+    title: (r.title as string) || 'Untitled Question',
+    story: (r.story as string) || '',
     question: r.question as string,
     options: {
       A: r.option_a as string,
@@ -104,10 +105,11 @@ export const db = {
     return rows.map(rowToQuestion);
   },
 
-  async getClientQuestions(): Promise<Array<{ id: string; story?: string; question: string; options: Question['options']; marks: number }>> {
+  async getClientQuestions(): Promise<Array<{ id: string; title: string; story: string; question: string; options: Question['options']; marks: number }>> {
     const questions = await this.getQuestions();
     return questions.map(q => ({
       id: q.id,
+      title: q.title,
       story: q.story,
       question: q.question,
       options: q.options,
@@ -118,9 +120,9 @@ export const db = {
   async addQuestion(q: Omit<Question, 'id'>): Promise<Question> {
     const id = 'q_' + Date.now();
     const { rows } = await pool.query(
-      `INSERT INTO questions (id, story, question, option_a, option_b, option_c, option_d, correct_answer, marks)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *`,
-      [id, q.story || null, q.question, q.options.A, q.options.B, q.options.C, q.options.D, q.correctAnswer, q.marks]
+      `INSERT INTO questions (id, title, story, question, option_a, option_b, option_c, option_d, correct_answer, marks)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`,
+      [id, q.title || 'Untitled Question', q.story, q.question, q.options.A, q.options.B, q.options.C, q.options.D, q.correctAnswer, q.marks]
     );
     // Sync total_questions
     await pool.query('UPDATE quiz_config SET total_questions = (SELECT COUNT(*) FROM questions) WHERE id = (SELECT id FROM quiz_config ORDER BY id LIMIT 1)');
@@ -132,7 +134,8 @@ export const db = {
     const values: unknown[] = [];
     let i = 1;
 
-    if (updated.story !== undefined)         { fields.push(`story = $${i++}`);          values.push(updated.story || null); }
+    if (updated.title !== undefined)         { fields.push(`title = $${i++}`);          values.push(updated.title); }
+    if (updated.story !== undefined)         { fields.push(`story = $${i++}`);          values.push(updated.story); }
     if (updated.question !== undefined)      { fields.push(`question = $${i++}`);       values.push(updated.question); }
     if (updated.options?.A !== undefined)    { fields.push(`option_a = $${i++}`);       values.push(updated.options.A); }
     if (updated.options?.B !== undefined)    { fields.push(`option_b = $${i++}`);       values.push(updated.options.B); }
