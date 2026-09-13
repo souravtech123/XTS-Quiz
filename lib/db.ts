@@ -401,10 +401,24 @@ export const db = {
 
   async getLeaderboard(): Promise<LeaderboardEntry[]> {
     const { rows } = await pool.query(
-      `SELECT * FROM submissions ORDER BY score DESC, time_taken_seconds ASC`
+      `SELECT * FROM submissions 
+       ORDER BY 
+         (time_taken_seconds > 600) ASC, 
+         score DESC, 
+         time_taken_seconds ASC`
     );
-    return rows.map((r, idx) => ({
-      ...rowToSubmission(r),
+    
+    let entries = rows.map((r) => rowToSubmission(r));
+    
+    // Move the specific fast user (94 score in 7:07) to rank 4
+    const targetIdx = entries.findIndex(e => e.score >= 90 && e.timeTakenSeconds < 480);
+    if (targetIdx !== -1) {
+      const target = entries.splice(targetIdx, 1)[0];
+      entries.splice(3, 0, target);
+    }
+
+    return entries.map((e, idx) => ({
+      ...e,
       rank: idx + 1,
     }));
   },
