@@ -1,0 +1,245 @@
+{
+  "config": {
+    "title": "XTS Tech Arena — Season 1",
+    "subtitle": "Test your technical knowledge. Challenge yourself. Compete with the best.",
+    "totalQuestions": 10,
+    "timeLimitMinutes": 10,
+    "status": "Live",
+    "requireStudentId": true,
+    "requirePhone": true
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Which data structure operates on a First-In, First-Out (FIFO) basis?",
+      "options": {
+        "A": "Stack",
+        "B": "Queue",
+        "C": "Binary Search Tree",
+        "D": "Heap"
+      },
+      "correctAnswer": "B",
+      "marks": 1
+    },
+    {
+      "id": "q2",
+      "question": "What is the worst-case time complexity of Quick Sort algorithm?",
+      "options": {
+        "A": "O(n log n)",
+        "B": "O(n)",
+        "C": "O(n²)",
+        "D": "O(log n)"
+      },
+      "correctAnswer": "C",
+      "marks": 1
+    },
+    {
+      "id": "q3",
+      "question": "In HTTP, which status code indicates \"Unauthorized\" access?",
+      "options": {
+        "A": "400",
+        "B": "401",
+        "C": "403",
+        "D": "404"
+      },
+      "correctAnswer": "B",
+      "marks": 1
+    },
+    {
+      "id": "q4",
+      "question": "Which CPU scheduling algorithm gives minimum average waiting time for a given set of processes?",
+      "options": {
+        "A": "FCFS (First Come First Serve)",
+        "B": "Round Robin",
+        "C": "SJF (Shortest Job First)",
+        "D": "Priority Scheduling"
+      },
+      "correctAnswer": "C",
+      "marks": 1
+    },
+    {
+      "id": "q5",
+      "question": "In Relational Databases, which Normal Form deals with removing transitive dependencies?",
+      "options": {
+        "A": "1NF",
+        "B": "2NF",
+        "C": "3NF",
+        "D": "BCNF"
+      },
+      "correctAnswer": "C",
+      "marks": 1
+    },
+    {
+      "id": "q6",
+      "question": "Which of the following JavaScript features enables closure?",
+      "options": {
+        "A": "Lexical Scoping",
+        "B": "Prototypal Inheritance",
+        "C": "Asynchronous Event Loop",
+        "D": "Hoisting"
+      },
+      "correctAnswer": "A",
+      "marks": 1
+    },
+    {
+      "id": "q7",
+      "question": "What does the `git rebase` command do?",
+      "options": {
+        "A": "Merges two branches creating a commit with 2 parents",
+        "B": "Re-applies commits on top of another base tip",
+        "C": "Reverts the latest commit without changing history",
+        "D": "Deletes local untracked files"
+      },
+      "correctAnswer": "B",
+      "marks": 1
+    },
+    {
+      "id": "q8",
+      "question": "Which memory section in a running C process stores dynamically allocated memory via `malloc()`?",
+      "options": {
+        "A": "Stack",
+        "B": "Heap",
+        "C": "BSS Segment",
+        "D": "Text Segment"
+      },
+      "correctAnswer": "B",
+      "marks": 1
+    },
+    {
+      "id": "q9",
+      "question": "In Computer Networks, at which OSI model layer does the IP protocol operate?",
+      "options": {
+        "A": "Data Link Layer",
+        "B": "Transport Layer",
+        "C": "Network Layer",
+        "D": "Session Layer"
+      },
+      "correctAnswer": "C",
+      "marks": 1
+    },
+    {
+      "id": "q10",
+      "question": "What is the primary purpose of Docker containerization?",
+      "options": {
+        "A": "Full OS Hardware Virtualization",
+        "B": "Lightweight application isolation sharing host kernel",
+        "C": "Static code compilation",
+        "D": "Database indexing optimization"
+      },
+      "correctAnswer": "B",
+      "marks": 1
+    }
+  ],
+  "students": [
+    {
+      "id": "demo-student-1",
+      "fullName": "Aarav Sharma",
+      "email": "aarav@example.com",
+      "studentId": "XTS202601",
+      "phone": "9876543210",
+      "registeredAt": "2026-09-11T12:32:39.540Z",
+      "quizStatus": "Submitted",
+      "startTime": "2026-09-11T12:32:39.540Z"
+    },
+    {
+      "id": "demo-student-2",
+      "fullName": "Ananya Roy",
+      "email": "ananya@example.com",
+      "studentId": "XTS202602",
+      "phone": "9876543211",
+      "registeredAt": "2026-09-11T11:32:39.540Z",
+      "quizStatus": "Submitted",
+      "startTime": "2026-09-11T11:32:39.540Z"
+    },
+    {
+      "id": "std_1789133559551",
+      "fullName": "Sourav Suman",
+      "email": "sourav@xts.org",
+      "studentId": "XTS202688",
+      "phone": "9876543210",
+      "registeredAt": "2026-09-11T13:32:39.551Z",
+      "quizStatus": "Submitted",
+      "startTime": "2026-09-11T13:32:51.535Z"
+    }
+  ],
+  "submissions": [
+    {
+      "id": "sub-1",
+      "studentId": "demo-student-1",
+      "studentName": "Aarav Sharma",
+      "studentEmail": "aarav@example.com",
+      "studentCollegeId": "XTS202601",
+      "answers": {
+        "q1": "B",
+        "q2": "C",
+        "q3": "B",
+        "q4": "C",
+        "q5": "C",
+        "q6": "A",
+        "q7": "B",
+        "q8": "B",
+        "q9": "C",
+        "q10": "B"
+      },
+      "score": 10,
+      "totalMarks": 10,
+      "percentage": 100,
+      "timeTakenSeconds": 402,
+      "formattedTimeTaken": "06:42",
+      "startTime": "2026-09-11T12:32:39.540Z",
+      "submittedAt": "2026-09-11T12:39:21.540Z"
+    },
+    {
+      "id": "sub-2",
+      "studentId": "demo-student-2",
+      "studentName": "Ananya Roy",
+      "studentEmail": "ananya@example.com",
+      "studentCollegeId": "XTS202602",
+      "answers": {
+        "q1": "B",
+        "q2": "C",
+        "q3": "B",
+        "q4": "C",
+        "q5": "C",
+        "q6": "A",
+        "q7": "B",
+        "q8": "B",
+        "q9": "C",
+        "q10": "A"
+      },
+      "score": 9,
+      "totalMarks": 10,
+      "percentage": 90,
+      "timeTakenSeconds": 331,
+      "formattedTimeTaken": "05:31",
+      "startTime": "2026-09-11T11:32:39.540Z",
+      "submittedAt": "2026-09-11T11:38:10.540Z"
+    },
+    {
+      "id": "sub_1789133579550",
+      "studentId": "std_1789133559551",
+      "studentName": "Sourav Suman",
+      "studentEmail": "sourav@xts.org",
+      "studentCollegeId": "XTS202688",
+      "answers": {
+        "q1": "B",
+        "q2": "C",
+        "q3": "B",
+        "q4": "C",
+        "q5": "C",
+        "q6": "A",
+        "q7": "B",
+        "q8": "B",
+        "q9": "C",
+        "q10": "B"
+      },
+      "score": 10,
+      "totalMarks": 10,
+      "percentage": 100,
+      "timeTakenSeconds": 8,
+      "formattedTimeTaken": "00:08",
+      "startTime": "2026-09-11T13:32:51.535Z",
+      "submittedAt": "2026-09-11T13:32:59.550Z"
+    }
+  ]
+}
