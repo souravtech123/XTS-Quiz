@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@xts.org';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_EMAIL = 'ankit@xts.com';
+const ADMIN_PASSWORD = 'ankit_755@';
 const SESSION_COOKIE = 'xts_admin_session';
 
 export async function verifyAdminCredentials(email: string, pass: string): Promise<boolean> {
