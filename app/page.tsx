@@ -89,14 +89,14 @@ export default function LandingPage() {
 
   const steps = [
     { n: '01', icon: Users, title: 'Register & Enter', copy: 'Register your details, verify your identity, and enter the arena.', color: 'text-purple-400', glow: 'shadow-purple-500/25' },
-    { n: '02', icon: Brain, title: 'Face 10 Questions', copy: 'Ten curated technical questions spanning CS fundamentals and engineering.', color: 'text-cyan-400', glow: 'shadow-cyan-500/25' },
+    { n: '02', icon: Brain, title: 'Face 20 Questions', copy: 'Twenty curated technical questions spanning CS fundamentals and engineering.', color: 'text-cyan-400', glow: 'shadow-cyan-500/25' },
     { n: '03', icon: Timer, title: 'Beat the Clock', copy: 'You have exactly 10 minutes. Every second you save counts toward your rank.', color: 'text-amber-400', glow: 'shadow-amber-500/25' },
     { n: '04', icon: Trophy, title: 'Claim Your Rank', copy: 'Instant server-verified scoring. See where you stand on the leaderboard.', color: 'text-emerald-400', glow: 'shadow-emerald-500/25' },
   ];
 
   const rules = [
     { text: 'Open to all students — any year, any branch.', highlight: 'Open entry.' },
-    { text: 'Every competitor gets the same 10 questions under an identical 10-minute clock.', highlight: 'Fixed conditions.' },
+    { text: 'Every competitor gets the same 20 questions under an identical 10-minute clock.', highlight: 'Fixed conditions.' },
     { text: 'Score is decided first. Time breaks all ties — faster wins.', highlight: 'Accuracy then speed.' },
     { text: 'No re-attempts, no pausing the timer once started.', highlight: 'One shot.' },
     { text: 'Scoring is done on the server — answers cannot be tampered with.', highlight: 'Verified results.' },
@@ -142,7 +142,7 @@ export default function LandingPage() {
           </h1>
 
           <p className="text-slate-300 text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-4 leading-relaxed">
-            One arena. 10 questions. 20 minutes.{' '}
+            One arena. 20 questions. 10 minutes.{' '}
             <span className="text-cyan-400 font-bold">Are you the fastest mind</span> in the room?
           </p>
           <p className="text-slate-500 text-sm sm:text-base max-w-lg mx-auto mb-12">
@@ -171,7 +171,7 @@ export default function LandingPage() {
 
           {/* Live stat strip */}
           <div className="inline-flex flex-wrap items-center justify-center gap-6 sm:gap-10 px-8 py-4 rounded-2xl glass-card mx-auto">
-            <StatCard value={10} label="Questions" suffix="" color="text-purple-400" />
+            <StatCard value={20} label="Questions" suffix="" color="text-purple-400" />
             <div className="w-px h-10 bg-slate-700/60 hidden sm:block" />
             <StatCard value={10} label="Minutes" suffix="" color="text-cyan-400" />
             <div className="w-px h-10 bg-slate-700/60 hidden sm:block" />
@@ -358,7 +358,7 @@ export default function LandingPage() {
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(3)].map((_, gi) => (
             <span key={gi} className="flex items-center gap-6">
-              {['10 Questions', '10 Minutes', '1 Champion', 'Prove Your Skills', 'Server Verified', 'No Retakes', 'Beat the Clock', 'Rise in the Arena'].map((t, i) => (
+              {['20 Questions', '10 Minutes', '1 Champion', 'Prove Your Skills', 'Server Verified', 'No Retakes', 'Beat the Clock', 'Rise in the Arena'].map((t, i) => (
                 <span key={i} className="flex items-center gap-3 px-6">
                   <Star className="w-4 h-4 text-purple-400/60 shrink-0" />
                   <span className="text-slate-400 text-sm font-semibold tracking-wide uppercase">{t}</span>
@@ -386,7 +386,7 @@ export default function LandingPage() {
             <br />your entry
           </h2>
           <p className="text-slate-400 text-lg sm:text-xl max-w-lg mx-auto mb-12 leading-relaxed">
-            Ten questions. Ten minutes. One attempt. Your fundamentals, your speed, your victory — all decided right now.
+            Twenty questions. Ten minutes. One attempt. Your fundamentals, your speed, your victory — all decided right now.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
